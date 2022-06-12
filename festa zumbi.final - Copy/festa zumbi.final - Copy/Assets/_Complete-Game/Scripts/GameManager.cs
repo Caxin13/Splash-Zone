@@ -140,14 +140,7 @@ namespace Completed
 		//GameOver is called when the player reaches 0 food points
 		public void GameOver()
 		{
-			//Set levelText to display number of levels passed and game over message
-			levelText.text = "After " + level + " days, you died.";
-			
-			//Enable black background image gameObject.
-			levelImage.SetActive(true);
-			
-			//Disable this GameManager.
-			enabled = false;
+			FindObjectOfType<Player>().Restart();
 		}
 		
 		//Coroutine to move enemies in sequence.

@@ -192,7 +192,7 @@ namespace Completed
 			if(other.tag == "Exit")
 			{
 				//Invoke the Restart function to start the next level with a delay of restartLevelDelay (default 1 second).
-				Invoke ("Restart", restartLevelDelay);
+				Invoke ("NextLevel", restartLevelDelay);
 				
 				//Disable the player object since level is over.
 				enabled = false;
@@ -233,12 +233,17 @@ namespace Completed
 		
 		
 		//Restart reloads the scene when called.
-		private void Restart ()
+		public void Restart ()
 		{
 			//Load the last scene loaded, in this case Main, the only scene in the game. And we load it in "Single" mode so it replace the existing one
             //and not load all the scene object in the current scene.
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 		}
+
+		private void NextLevel ()
+        {
+			SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings);
+        }
 		
 		
 		//LoseFood is called when an enemy attacks the player.
